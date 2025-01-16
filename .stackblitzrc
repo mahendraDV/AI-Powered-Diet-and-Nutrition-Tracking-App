@@ -1,0 +1,4 @@
+{
+  "installDependencies": true,
+  "startCommand": "npm i -g @nativescript/cli && ns preview"
+}

@@ -1,0 +1,82 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="AI Diet Assistant" />
+    
+    <TabView selectedIndex="{{ selectedTab }}">
+        <!-- Track Food Tab -->
+        <TabViewItem title="Track">
+            <ScrollView>
+                <StackLayout class="p-4">
+                    <Label text="Add Food" class="text-xl font-bold mb-4" />
+                    <TextField hint="Food name" text="{{ newFood.name }}" class="mb-2" />
+                    <TextField hint="Calories" text="{{ newFood.calories }}" keyboardType="number" class="mb-2" />
+                    <TextField hint="Serving size" text="{{ newFood.servingSize }}" keyboardType="number" class="mb-2" />
+                    <TextField hint="Serving unit" text="{{ newFood.servingUnit }}" class="mb-2" />
+                    <Button text="Add Food" tap="{{ onAddFood }}" class="btn btn-primary mb-4" />
+
+                    <Label text="Today's Log" class="text-xl font-bold mb-2" />
+                    <ListView items="{{ todaysFoods }}" class="mb-4">
+                        <ListView.itemTemplate>
+                            <StackLayout class="p-2">
+                                <Label text="{{ name }}" class="font-bold" />
+                                <Label text="{{ calories }} calories" />
+                            </StackLayout>
+                        </ListView.itemTemplate>
+                    </ListView>
+                </StackLayout>
+            </ScrollView>
+        </TabViewItem>
+
+        <!-- Analysis Tab -->
+        <TabViewItem title="Analysis">
+            <ScrollView>
+                <StackLayout class="p-4">
+                    <Label text="Nutrition Analysis" class="text-xl font-bold mb-4" />
+                    <Label text="{{ dailyCalories }}" class="text-lg mb-2" />
+                    
+                    <Label text="Missing Nutrients:" class="font-bold mt-4 mb-2" />
+                    <ListView items="{{ missingNutrients }}" class="mb-4">
+                        <ListView.itemTemplate>
+                            <Label text="{{ $value }}" class="text-red-500 p-2" />
+                        </ListView.itemTemplate>
+                    </ListView>
+
+                    <Label text="AI Recommendations:" class="font-bold mt-4 mb-2" />
+                    <ListView items="{{ recommendations }}" class="mb-4">
+                        <ListView.itemTemplate>
+                            <Label text="{{ $value }}" textWrap="true" class="p-2" />
+                        </ListView.itemTemplate>
+                    </ListView>
+                </StackLayout>
+            </ScrollView>
+        </TabViewItem>
+
+        <!-- Reports Tab -->
+        <TabViewItem title="Reports">
+            <ScrollView>
+                <StackLayout class="p-4">
+                    <Label text="Nutrition Reports" class="text-xl font-bold mb-4" />
+                    <SegmentedBar selectedIndex="{{ reportPeriod }}" class="mb-4">
+                        <SegmentedBar.items>
+                            <SegmentedBarItem title="Daily" />
+                            <SegmentedBarItem title="Weekly" />
+                            <SegmentedBarItem title="Monthly" />
+                        </SegmentedBar.items>
+                    </SegmentedBar>
+
+                    <!-- Charts will be rendered here -->
+                    <ContentView height="300" id="chartView" />
+                    
+                    <Label text="Statistics" class="font-bold mt-4 mb-2" />
+                    <ListView items="{{ statistics }}" class="mb-4">
+                        <ListView.itemTemplate>
+                            <GridLayout columns="*, *" class="p-2">
+                                <Label text="{{ name }}" col="0" />
+                                <Label text="{{ value }}" col="1" />
+                            </GridLayout>
+                        </ListView.itemTemplate>
+                    </ListView>
+                </StackLayout>
+            </ScrollView>
+        </TabViewItem>
+    </TabView>
+</Page>

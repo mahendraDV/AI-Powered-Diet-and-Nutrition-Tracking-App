@@ -1,0 +1,62 @@
+<div class="food-tracker-container">
+  <mat-card class="form-card mat-elevation-z4" [@fadeSlide]>
+    <mat-card-header>
+      <mat-card-title>Add Food</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="foodForm" (ngSubmit)="onSubmit()" class="food-form">
+        <mat-form-field appearance="outline">
+          <mat-label>Food Name</mat-label>
+          <input matInput formControlName="name" placeholder="e.g., Apple">
+          <mat-error *ngIf="foodForm.get('name')?.hasError('required')">
+            Food name is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Calories</mat-label>
+          <input matInput type="number" formControlName="calories" placeholder="e.g., 95">
+          <mat-error *ngIf="foodForm.get('calories')?.hasError('required')">
+            Calories are required
+          </mat-error>
+        </mat-form-field>
+
+        <div class="serving-container">
+          <mat-form-field appearance="outline">
+            <mat-label>Serving Size</mat-label>
+            <input matInput type="number" formControlName="servingSize" placeholder="e.g., 100">
+            <mat-error *ngIf="foodForm.get('servingSize')?.hasError('required')">
+              Serving size is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Unit</mat-label>
+            <input matInput formControlName="servingUnit" placeholder="g">
+          </mat-form-field>
+        </div>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="!foodForm.valid">
+          Add Food
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="foods-list-card mat-elevation-z4" [@fadeSlide]>
+    <mat-card-header>
+      <mat-card-title>Today's Log</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="foods-list">
+        <div class="food-item" *ngFor="let food of todaysFoods">
+          <div class="food-info">
+            <span class="food-name">{{ food.name }}</span>
+            <span class="food-serving">{{ food.servingSize }}{{ food.servingUnit }}</span>
+          </div>
+          <span class="food-calories">{{ food.calories }} cal</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

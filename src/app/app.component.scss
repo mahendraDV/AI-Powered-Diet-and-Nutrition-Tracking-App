@@ -1,0 +1,45 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+mat-sidenav-container {
+  flex: 1;
+  margin-top: 64px;
+}
+
+.app-sidenav {
+  width: 250px;
+  padding-top: 16px;
+}
+
+.content-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+mat-nav-list {
+  a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    
+    mat-icon {
+      margin-right: 8px;
+    }
+  }
+
+  .active {
+    background: rgba(0, 0, 0, 0.04);
+  }
+}

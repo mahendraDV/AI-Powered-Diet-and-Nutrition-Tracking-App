@@ -1,0 +1,55 @@
+.food-tracker-container {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.food-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+
+  .serving-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+  }
+
+  button {
+    margin-top: 16px;
+  }
+}
+
+.foods-list {
+  .food-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .food-info {
+      display: flex;
+      flex-direction: column;
+
+      .food-name {
+        font-weight: 500;
+      }
+
+      .food-serving {
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.6);
+      }
+    }
+
+    .food-calories {
+      font-weight: 500;
+      color: #673ab7;
+    }
+  }
+}
